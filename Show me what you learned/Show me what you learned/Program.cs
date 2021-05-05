@@ -15,7 +15,6 @@ namespace Show_me_what_you_learned
 
 
             double grade;
-            string answer;
             string input;
 
 
