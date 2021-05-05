@@ -16,6 +16,7 @@ namespace Show_me_what_you_learned
 
             double grade;
             string input;
+            string answer;
 
 
 
@@ -82,7 +83,7 @@ namespace Show_me_what_you_learned
 
 
 
-            //PART THREE
+            //PART TWO
             //The last request Mrs. Smith makes is that Sarah also allows students to input as many of their favorite snacks as they would like. 
             //The program should keep asking the students for snacks until they indicate they are done.
             //After they indicate they are done the program should output a random number to represent the students place in line for yearbook signing. 
@@ -107,18 +108,18 @@ namespace Show_me_what_you_learned
 
 
 
-            //PART TWO
-            // Mrs.Smith also wants the program to ask the student to enter in the word of the week.
-            //The program must output to the user the word in reverse and in the color green.
-            //Additionally, all the vowels in the user’s word must be replaced with “!”. 
+            //PART THREE
+            // Mrs. Smith also wants the program to ask the student to enter in the word of the week. 
+            //All the vowels in the user’s word must be replaced with “!” and outputted to the user. 
+            //Additionally, output how many letters are in the word.
 
             Console.WriteLine("Please enter the word of the week!");
             input = Console.ReadLine().ToLower();
 
-            int reverseWORD = input.Length;
+            int WORD = input.Length;
 
 
-            Console.WriteLine(reverseWORD);
+            Console.WriteLine(WORD);
 
             input = input.Replace("a", "!").Replace("e", "!").Replace("i", "!").Replace("o", "!").Replace("u", "!");
 
@@ -160,28 +161,36 @@ namespace Show_me_what_you_learned
 
 
             //Part SIX
+            Console.WriteLine("Are you Mrs.Smith? yes or no.");
+            answer = Console.ReadLine().ToLower();
 
-            string[] linesOfFile = File.ReadAllLines("MISexcelEC.csv");
-
-            for (int i = 1; i < linesOfFile.Length; i++)
+            if (answer == "yes")
             {
-                string currentLineOfFile = linesOfFile[i].ToLower();
-                //StudentID,LastName,FirstName,EnglishGrade,StateTest(Y/N)
+                string[] linesOfFile = File.ReadAllLines("MISexcelEC.csv");
 
-                string[] pieces = currentLineOfFile.Split(",");
+                for (int i = 1; i < linesOfFile.Length; i++)
+                {
+                    string currentLineOfFile = linesOfFile[i].ToLower();
+                    //StudentID,LastName,FirstName,EnglishGrade,StateTest(Y/N)
 
-                string FirstName = pieces[2];
+                    string[] pieces = currentLineOfFile.Split(",");
 
-                string LastName = pieces[1];
-                double ID= Convert.ToInt32(pieces[0]);
-                string EngGrade = pieces[3];
-                string StateTest = pieces[4];
+                    string FirstName = pieces[2];
 
-                Console.WriteLine($"{LastName}, {FirstName}({ID}) - ENG Grade:{EngGrade}. State Test(Y/N): {StateTest}.");
+                    string LastName = pieces[1];
+                    double ID = Convert.ToInt32(pieces[0]);
+                    string EngGrade = pieces[3];
+                    string StateTest = pieces[4];
 
-              
+                    Console.WriteLine($"{LastName}, {FirstName}({ID}) - ENG Grade:{EngGrade}. State Test(Y/N): {StateTest}.");
+
+
+                }
             }
-
+            else
+            {
+                Environment.Exit(-1);
+            }
         }
     }
 }
